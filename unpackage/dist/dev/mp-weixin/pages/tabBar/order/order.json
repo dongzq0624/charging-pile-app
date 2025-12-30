@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "订单",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jcode-navbar": "../../../components/jcode-navbar/jcode-navbar",
+    "uni-icons": "../../../uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "jcode-nav-list-scroll": "../../../components/jcode-navListScroll/jcode-navListScroll",
+    "jcode-tab-bar": "../../../components/jcode-tabBar/jcode-tabBar"
+  }
+}

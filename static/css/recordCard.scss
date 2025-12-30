@@ -1,0 +1,63 @@
+	.record-card {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 20rpx;
+		border-radius: 20rpx;
+		background: white;
+		padding: 10rpx 20rpx;
+		box-shadow: 0px 0px 10px 0px rgba(253, 226, 172, 0.3);
+
+		.record-card-top {
+			height: 50rpx;
+			/* background-color: #bfbcbc29; */
+			display: flex;
+			align-items: center;
+			padding: 0 10rpx;
+			border-bottom: 1rpx solid #bbb7b7;
+			box-shadow: 0px 1px white;
+		}
+
+		.record-card-middle {
+			display: flex;
+			color: black;
+			height: 130rpx;
+			padding: 15rpx 0px;
+			font-size: 27rpx;
+			align-items: center;
+
+			.record-card-middle-left {
+				height: 100rpx;
+				width: 140rpx;
+				display: flex;
+				background: $uni-color-primary2;
+				margin: 15rpx;
+				border-radius: 20rpx;
+				align-items: center;
+				justify-content: center;
+				color: white;
+			}
+
+			.record-card-middle-right {
+
+				width: 100%;
+				margin-left: 30rpx;
+				display: flex;
+				flex-direction: column;
+				height: 100%;
+				justify-content: center;
+
+				.record-card-middle-right-item {
+					width: 100%;
+					display: flex;
+					justify-content: space-between;
+				}
+			}
+		}
+
+		.record-card-bottom {
+			height: 50rpx;
+			color: gray;
+			padding: 0 10rpx;
+			font-size: 27rpx;
+		}
+	}

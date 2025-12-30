@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "准备充电",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jcode-navbar": "../../../components/jcode-navbar/jcode-navbar",
+    "uni-icons": "../../../uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "jcode-dialog": "../../../components/jcode-dialog/jcode-dialog"
+  }
+}

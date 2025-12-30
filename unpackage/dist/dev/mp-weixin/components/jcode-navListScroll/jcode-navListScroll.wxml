@@ -1,0 +1,1 @@
+<view><jcode-scroll wx:if="{{d}}" u-s="{{['d']}}" u-r="jcodeScrollRef" class="scroll r" bindgetData="{{b}}" bindbackData="{{c}}" u-i="5452e939-0" bind:__l="__l" u-p="{{d}}"><slot></slot></jcode-scroll></view>

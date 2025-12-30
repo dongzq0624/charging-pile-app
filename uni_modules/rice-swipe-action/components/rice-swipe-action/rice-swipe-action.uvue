@@ -1,0 +1,66 @@
+<template>
+	<view :style="customStyle">
+		<slot></slot>
+	</view>
+</template>
+
+<script setup>
+	/**
+	 * swipr-action 滑动单元格
+	 * @description  滑动单元格
+	 * @property {Boolean} autoClose 是否关闭同组中的其他单元格
+	 * @property {Object|String} customStyle 自定义style样式
+	 */
+	type SwipeActionProps = {
+		autoClose : boolean,
+		customStyle : UTSJSONObject
+	}
+
+	defineOptions({
+		name: 'riceSwipeAction'
+	})
+
+	const props = withDefaults(defineProps<SwipeActionProps>(), {
+		autoClose: true,
+		customStyle: () : UTSJSONObject => ({})
+	})
+
+	const instance = getCurrentInstance()!.proxy!
+	const closeOtherItem = ref(false)
+	/**
+	 * 关闭同组中所有的单元格
+	 */
+	const closeAll = () => {
+		// #ifndef H5 || APP-IOS
+		let children = instance.$children
+		for (let i = 0; i < children.length; i++) {
+			if (children[i].$options.name == 'riceSwipeActionItem') {
+				children[i].$callMethod('close')
+			}
+		}
+		// #endif
+	}
+
+
+	/**
+	 * 关闭同组中其他的单元格
+	 */
+	let openItem : VueComponent | null = null
+	const closeOther = (vm : VueComponent) => {
+		if (!props.autoClose) return
+		if (openItem != null && openItem !== vm) {
+			// #ifndef MP-WEIXIN
+			openItem!.$callMethod('close')
+			// #endif
+			// #ifdef MP-WEIXIN
+			openItem['show'] = 'none'
+			// #endif
+		}
+		openItem = vm
+	}
+
+	defineExpose({
+		closeAll,
+		closeOther
+	})
+</script>

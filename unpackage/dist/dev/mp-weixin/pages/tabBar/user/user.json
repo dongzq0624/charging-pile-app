@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jcode-navbar": "../../../components/jcode-navbar/jcode-navbar",
+    "jcode-notice": "../../../components/jcode-notice/jcode-notice",
+    "jcode-dialog": "../../../components/jcode-dialog/jcode-dialog",
+    "jcode-tab-bar": "../../../components/jcode-tabBar/jcode-tabBar",
+    "member-info": "./components/MemberInfo/MemberInfo"
+  }
+}

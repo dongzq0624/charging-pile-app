@@ -1,0 +1,43 @@
+.columnPage {
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.whitePage {
+	background-color: #FFFCF6;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.listCard {
+	display: flex;
+	width: 90vw;
+	background-color: white;
+	border-radius: 40rpx;
+	padding: 20rpx;
+}
+
+.grayLine {
+	width: 100%;
+	background-color: #F3F3F3;
+	height: 1rpx;
+	margin-top: 10rpx;
+}
+
+.page-bottom {
+	z-index: 10;
+	position: fixed;
+	bottom: 0px;
+	left: 0;
+	background-color: #ffffff;
+	width: 100%;
+	box-shadow: 0px 0px 10px 0px rgba(253, 226, 172, 0.3);
+	border-top-left-radius: 20rpx;
+	border-top-right-radius: 20rpx;
+	padding: 20rpx;
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "钱包明细",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jcode-navbar": "../../../components/jcode-navbar/jcode-navbar",
+    "jcode-scroll": "../../../components/jcode-scroll/jcode-scroll"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "富文本页面",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jcode-navbar": "../../components/jcode-navbar/jcode-navbar",
+    "jcode-lose-page": "../../components/jcode-losePage/jcode-losePage"
+  }
+}

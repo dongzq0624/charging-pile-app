@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "电站详情",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jcode-navbar": "../../components/jcode-navbar/jcode-navbar",
+    "jcode-empty": "../../components/jcode-empty/jcode-empty",
+    "uni-icons": "../../uni_modules/uni-icons/components/uni-icons/uni-icons"
+  }
+}

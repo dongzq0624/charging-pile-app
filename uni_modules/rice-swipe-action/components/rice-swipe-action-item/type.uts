@@ -1,0 +1,24 @@
+export type SwipeDirection = 'left' | 'right' | 'none'
+
+export type SwipeMenu = {
+	text : string
+	style ?: UTSJSONObject
+}
+
+export type SwipeActionItemProps = {
+	name ?: string
+	leftMenu ?: SwipeMenu[]
+	rightMenu ?: SwipeMenu[]
+	iosStyle ?: boolean,
+	disabled ?: boolean
+	duration ?: string
+	autoClose ?: boolean
+	customStyle ?: UTSJSONObject
+}
+
+export type StateType = {
+	x : number,
+	opened : boolean,
+	rightWidth : number,
+	leftWidth : number,
+}

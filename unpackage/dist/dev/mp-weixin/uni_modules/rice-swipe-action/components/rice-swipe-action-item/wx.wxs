@@ -1,0 +1,317 @@
+var THRESHOLD = 0.15;
+var MIN_DISTANCE = 10;
+
+var owner;
+var state;
+
+/**
+ * 设置state的值
+ */
+function getState(ownerInstance) {
+	owner = ownerInstance
+	state = owner.getState()
+	state.leftWidth = state.leftWidth || 0
+	state.rightWidth = state.rightWidth || 0
+	state.x = state.x || 0
+	state.preX = state.preX || 0
+	state.opened = state.opened || false
+	state.leftMenusOffset = state.leftMenusOffset || []
+	state.leftMenuDom = state.leftMenuDom || []
+	state.rightMenusOffset = state.rightMenusOffset || []
+	state.rightMenuDom = state.rightMenuDom || []
+}
+
+
+/**
+ * 字符串转bool
+ */
+function str2Bool(str) {
+	return (typeof str == 'string' ? JSON.parse(str) : str) || false
+}
+
+/**
+ * 是否禁用
+ */
+function isDisabled(instance) {
+	var disabled = instance.getDataset().disabled
+	return str2Bool(disabled)
+}
+
+
+
+/**
+ * 将num限制在min(含)和max(含)之间
+ */
+function clamp(num, min, max) {
+	return Math.min(Math.max(num, min), max)
+}
+
+/**
+ * 右移动
+ */
+function handleRightActions(x, instance) {
+	if (x > 0) {
+		x = 0
+	}
+	if (!state.rightMenuDom) return
+	var duration = instance.getDataset().duration
+	for (var i = 0; i < state.rightMenuDom.length; i++) {
+		var moveX = 0;
+		if (i > 0) {
+			moveX = state.rightMenusOffset[i - 1] + x * (state.rightMenusOffset[i - 1] / state.rightWidth)
+		}
+		if (moveX > 0) moveX = 0
+		state.rightMenuDom[i].setStyle({
+			'transition-property': 'transform',
+			'transform': 'translateX(' + moveX + 'px)',
+			'transition-duration': state.isDragging ? '0s' : duration + 'ms',
+		})
+	}
+}
+
+/**
+ * 左移动
+ */
+function handleLeftActions(x, instance) {
+	if (x < 0) {
+		x = 0
+	}
+	if (!state.leftMenuDom) return
+	var duration = instance.getDataset().duration
+	for (var i = 0; i < state.leftMenuDom.length; i++) {
+		var moveX = 0
+		if (i != state.leftMenuDom.length - 1) {
+			moveX = state.leftMenusOffset[i + 1] - x * (state.leftMenusOffset[i + 1] / state.leftWidth)
+		}
+		if (moveX < 0) moveX = 0
+		state.leftMenuDom[i].setStyle({
+			'transition-property': 'transform',
+			'transform': 'translateX(' + moveX + 'px)',
+			'transition-duration': state.isDragging ? '0s' : duration + 'ms',
+			'z-index': state.leftMenuDom.length - i
+		})
+	}
+}
+
+/**
+ * 移动
+ */
+function animateActions(x, instance) {
+	x = x || 0
+	state.x = clamp(x, -state.rightWidth, state.leftWidth)
+	var duration = instance.getDataset().duration
+	instance.setStyle({
+		'transition-property': 'transform',
+		'transform': 'translateX(' + state.x + 'px)',
+		'transition-duration': state.isDragging ? '0s' : duration + 'ms',
+	})
+	var iosStyle = instance.getDataset().iosstyle
+	if (str2Bool(iosStyle)==true) {
+		handleRightActions(state.x, instance)
+		handleLeftActions(state.x, instance)
+	}
+
+}
+
+/**
+ * 打开单元格
+ */
+function openAction(direction = 'right', instance) {
+	state.direction = direction
+	var offsetX = direction == 'left' ? state.leftWidth : -state.rightWidth
+	animateActions(offsetX, instance)
+	if (!state.opened) {
+		state.opened = true
+		owner.callMethod('open', direction)
+	}
+
+}
+
+/**
+ * 关闭单元格
+ */
+
+function closeAction(direction = 'right', instance) {
+	state.direction = direction
+	animateActions(0, instance)
+	if (state.opened) {
+		state.opened = false
+		owner.callMethod('close', direction)
+	}
+
+}
+
+/**
+ * 改变状态
+ */
+function changeShow(newVal, oldVal, ownerInstance, instance) {
+	if (!newVal) return
+	getState(ownerInstance)
+	if (isDisabled(instance)) return
+	getDom()
+	if (newVal != 'none') {
+		openAction(newVal, instance)
+		return
+	}
+	closeAction(newVal, instance)
+
+}
+
+/**
+ * 重新获取尺寸信息
+ */
+function resize(newVal, oldVal, ownerInstance, instance) {
+	if (!newVal) return
+	getState(ownerInstance)
+	getDom()
+	owner.callMethod('unresize')
+}
+
+/**
+ * 重置状态
+ */
+function resetTouchStatus() {
+	state.rollDirection = ""
+	state.skipMove = false
+}
+
+/**
+ * 触摸开始
+ */
+function onTouchstart(e, ownerInstance) {
+	getState(ownerInstance)
+	resetTouchStatus()
+	getDom()
+	var instance = e.instance
+	if (isDisabled(instance)) return
+	var touches = e.touches
+
+	state.startX = touches[0].clientX
+	state.startY = touches[0].clientY
+	state.preX = state.x
+	owner.callMethod("closeSwipe")
+}
+
+/**
+ * 滑动
+ */
+function onTouchmove(e, ownerInstance) {
+	getState(ownerInstance)
+	var instance = e.instance
+
+	if (state.skipMove) return
+	if (isDisabled(instance)) return
+	state.isDragging = true
+	var touches = e.touches
+	var deltaX = touches[0].clientX - (state.startX || 0)
+	var deltaY = touches[0].clientY - (state.startY || 0)
+	state.rollDirection = state.rollDirection || getDirection(Math.abs(deltaX), Math.abs(deltaY))
+	if (state.rollDirection == 'vertical') {
+		state.skipMove = true
+	}
+	if (state.rollDirection != 'horizontal') {
+		return
+	}
+
+	var offsetX = deltaX + state.preX
+	state.direction = offsetX > 0 ? 'left' : 'right'
+	animateActions(offsetX, instance)
+
+	//阻止页面滚动
+	return false
+}
+
+
+/**
+ * 获取打开关闭单元格的阈值
+ */
+function getThreshold() {
+	var num = state.opened ? 1 - THRESHOLD : THRESHOLD
+	return state.direction == 'left' ? state.leftWidth * num : state.rightWidth * num
+}
+
+/**
+ * 滑动结束
+ */
+function onTouchend(e, ownerInstance) {
+	getState(ownerInstance)
+	var instance = e.instance
+	if (isDisabled(instance)) return
+	state.isDragging = false
+	var threshold = getThreshold()
+	if (Math.abs(state.x) > threshold) {
+		openAction(state.direction, instance)
+	} else {
+		closeAction(state.direction, instance)
+	}
+}
+
+/**
+ * 获取左侧单元格的信息
+ */
+function getLeftDom() {
+	var leftDom = owner.selectComponent('.rice-swipe-cell_left')
+	if (!leftDom) {
+		state.leftWidth = 0
+		state.leftMenuDom = []
+		state.leftMenusOffset = []
+		return
+	}
+	var leftMenusOffset = []
+	state.leftWidth = leftDom.getBoundingClientRect().width
+	state.leftMenuDom = owner.selectAllComponents('.rice-menu-item_left') || []
+	var offset = state.leftWidth
+	for (var i = 0; i < state.leftMenuDom.length; i++) {
+		leftMenusOffset.push(offset)
+		offset -= state.leftMenuDom[i].getBoundingClientRect().width
+	}
+	state.leftMenusOffset = leftMenusOffset
+}
+
+/**
+ * 获取右侧单元格的信息
+ */
+function getRightDom() {
+	var rightDom = owner.selectComponent('.rice-swipe-cell_right')
+	if (!rightDom) {
+		state.rightWidth = 0
+		state.rightMenusOffset = []
+		state.rightMenusOffset = []
+		return
+	}
+	var rightMenusOffset = []
+	state.rightWidth = rightDom.getBoundingClientRect().width
+	state.rightMenuDom = owner.selectAllComponents('.rice-menu-item_right') || []
+	var offset = 0
+	for (var i = 0; i < state.rightMenuDom.length; i++) {
+		offset += state.rightMenuDom[i].getBoundingClientRect().width
+		rightMenusOffset.push(-offset)
+	}
+	state.rightMenusOffset = rightMenusOffset
+}
+
+
+function getDom() {
+	getLeftDom()
+	getRightDom()
+}
+
+function getDirection(x, y) {
+	if (x > y && x > MIN_DISTANCE) {
+		return 'horizontal';
+	}
+	if (y > x && y > MIN_DISTANCE) {
+		return 'vertical';
+	}
+	return '';
+}
+
+
+
+module.exports = {
+	changeShow: changeShow,
+	onTouchstart: onTouchstart,
+	onTouchmove: onTouchmove,
+	onTouchend: onTouchend,
+	resize: resize,
+}

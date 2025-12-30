@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "pages/tabBar/home/home",
+    "pages/tabBar/recharge/recharge",
+    "pages/tabBar/order/order",
+    "pages/tabBar/user/user",
+    "pages/login/login",
+    "pages/setting/memberSetting",
+    "pages/wallet/walletRecord/walletRecord",
+    "pages/wallet/recharge/recharge",
+    "pages/wallet/withdrawal/withdrawal",
+    "pages/wallet/recordDetail/recordDetail",
+    "pages/wallet/success/success",
+    "pages/richTextView/richTextView",
+    "pages/scan/manualInput/manualInput"
+  ],
+  "subPackages": [
+    {
+      "root": "sub_charging",
+      "pages": [
+        "charge/readyToCharge/readyToCharge",
+        "order/orderDetails",
+        "charge/charging/charging",
+        "station/stationDetail",
+        "station/stationList/stationList",
+        "station/collectionStation/collectionStation",
+        "station/stationMap/stationMap"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#9799a5",
+    "selectedColor": "#28B389",
+    "backgroundColor": "#F8F8F8",
+    "borderStyle": "white",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/tabBar/home/home"
+      },
+      {
+        "text": "充值",
+        "pagePath": "pages/tabBar/recharge/recharge"
+      },
+      {
+        "text": "订单",
+        "pagePath": "pages/tabBar/order/order"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/tabBar/user/user"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取用户定位"
+    }
+  },
+  "usingComponents": {}
+}

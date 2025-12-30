@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jcode-navbar": "../../components/jcode-navbar/jcode-navbar",
+    "jcode-form": "../../components/jcode-form/jcode-form",
+    "jcode-dialog": "../../components/jcode-dialog/jcode-dialog"
+  }
+}

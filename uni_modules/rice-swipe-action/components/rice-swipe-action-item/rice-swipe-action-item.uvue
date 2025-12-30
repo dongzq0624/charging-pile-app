@@ -1,0 +1,545 @@
+<template>
+	<view class="rice-swipe-action" :style="customStyle">
+	
+		<!-- 微信小程序使用wxs实现 -->
+		<!-- #ifdef MP-WEIXIN -->
+		<view class="rice-swipe-cell" :data-disabled="disabled" :data-duration="duration" :data-iosStyle="iosStyle"
+			:show="show" :change:show="wxs.changeShow" :resize="resizeDom" :change:resize="wxs.resize"
+			@touchstart="wxs.onTouchstart" @touchmove="wxs.onTouchmove" @touchend="wxs.onTouchend"
+			@touchcancel="wxs.onTouchend">
+		<!-- #endif -->
+
+			<!-- #ifndef MP-WEIXIN -->
+			<view class="rice-swipe-cell" ref="swipe" @touchstart="onTouchstart" @touchmove="onTouchmove"
+				@touchend="onTouchend" @touchcancel="onTouchend">
+			<!-- #endif -->
+				<view v-if="hasLeftAction" class="rice-swipe-cell_left" ref="leftAction">
+					<slot name="left">
+						<view v-for="(item,index) in leftMenu" :key="index" class="rice-menu-item_left"
+							:style="getMenuStyle(item.style)" data-s="swipe-action" @click="menuClick(index,'left')">
+							<text :style="getMenuTextStyle(item.style)">{{item.text}}</text>
+						</view>
+					</slot>
+				</view>
+				<view class="rice-swipe-cell_content" @click="contentClick">
+					<slot name="default"></slot>
+				</view>
+				<view v-if="hasRightAction" class="rice-swipe-cell_right" ref="rightAction">
+					<slot name="right">
+						<view v-for="(item,index) in rightMenu" :key="index" class="rice-menu-item_right"
+							:style="getMenuStyle(item.style)" data-s="swipe-action" @click="menuClick(index,'right')">
+							<text :style="getMenuTextStyle(item.style)">{{item.text}}</text>
+						</view>
+					</slot>
+				</view>
+			</view>
+		</view>
+</template>
+
+<!-- #ifdef MP-WEIXIN -->
+<script module="wxs" lang="wxs" src="./wx.wxs"></script>
+<script>
+	import mpMixins from "./mpMixins"
+	export default {
+		//在微信小程序中，app-vue和app-uvue共用这个mixins
+		mixins: [mpMixins],
+	}
+</script>
+<!-- #endif -->
+
+<!-- #ifndef MP-WEIXIN -->
+<script setup>
+	/**
+	 * swipr-action-item 滑动单元格
+	 * @description  滑动单元格
+	 * @property {String} v-model/modelValue {left|right|none} 默认none
+	 * @value left 打开左侧单元格
+	 * @value right 打开右侧单元格
+	 * @value none 关闭单元格
+	 * @property {String} name 唯一标识符
+	 * @property {Array} leftMenu 左侧菜单项及样式
+	 * @property {Array} rightMenu 右侧菜单项及样式
+	 * @property {Boolean} iosStyle 是否ios风格的滑动
+	 * @property {Boolean} disabled 是否禁止滑动
+	 * @property {String} duration 动画过渡时间，单位ms
+	 * @property {Boolean} autoClose 是否自动关闭单元格，如果左/右传了插槽，此参数无效，可以通过modeValue手动关闭单元格
+	 * @property {Object} customStyle 自定义style样式
+	 */
+	import type { SwipeActionItemProps, SwipeMenu, SwipeDirection, StateType } from "./type.uts"
+	import type { Ref } from "vue"
+	import { useTouch } from "../../composables/useTouch"
+
+	defineOptions({
+		name: 'riceSwipeActionItem'
+	})
+
+	const touch = useTouch();
+	const showMore = ref(false)
+	const show = defineModel({
+		type: String,
+		default: 'none'
+	})
+
+	const props = withDefaults(defineProps<SwipeActionItemProps>(), {
+		disabled: false,
+		duration: '300',
+		autoClose: true,
+		iosStyle: true,
+		leftMenu: () : SwipeMenu[] => ([]),
+		rightMenu: () : SwipeMenu[] => ([]),
+		customStyle: () : UTSJSONObject => ({}),
+	})
+
+	const slots = defineSlots<{
+		left(props : any) : any,
+		default(props : any) : any,
+		right(props : any) : any,
+	}>()
+
+	const emit = defineEmits(['open', 'close', 'menuClick', 'contentClick'])
+
+	const isDragging = ref(false)
+	const skipMove = ref(false)
+	const preX = ref(0)
+	const leftAction = ref<UniElement | null>(null)
+	const rightAction = ref<UniElement | null>(null)
+	const swipe = ref<UniElement | null>(null)
+	const state = ref<StateType>({
+		x: 0,
+		rightWidth: 0,
+		leftWidth: 0,
+		opened: false,
+	})
+
+	//是否有左侧的内容
+	const hasLeftAction = computed(() => {
+		return props.leftMenu.length > 0 || slots['left'] != null
+	})
+
+	//是否有右侧的内容
+	const hasRightAction = computed(() => {
+		return props.rightMenu.length > 0 || slots['right'] != null
+	})
+
+	//当前单元格打开的方向
+	const direction = computed(() : SwipeDirection => {
+		if (state.value.x == 0) return 'none'
+		return state.value.x > 0 ? 'left' : 'right'
+	})
+
+	/**
+	 * 获取菜单项的style样式-uvue 字体的样式不能设置在view上
+	 */
+	const getMenuStyle = (style : UTSJSONObject | null) : Map<string, any> => {
+		let css = new Map<string, any>()
+		if (style == null) return css
+		css = style.toMap() as Map<string, any>
+		css.delete('fontSize')
+		css.delete('color')
+		return css as Map<string, any>
+	}
+
+	/**
+	 * 获取菜单项文字的样式
+	 */
+	const getMenuTextStyle = (style : UTSJSONObject | null) : Map<string, any> => {
+		let css = new Map<string, any>()
+		if (style == null) {
+			style = {} as UTSJSONObject
+		}
+		if (style['color'] != null) css.set('color', style['color'] ?? '#fff')
+		if (style['font-size'] != null) css.set('font-size', style['font-size'] ?? '30rpx')
+		return css
+	}
+
+
+	/**
+	 * 将num限制在min(含)和max(含)之间
+	 */
+	const clamp = (num : number, min : number, max : number) => {
+		return Math.min(Math.max(num, min), max)
+	}
+
+	const getDomChildren = (dom : UniElement | null) => {
+		if (dom == null) return []
+		let children = dom.children
+		//app平台使用slot时children会多一层 COMMENT 标签，不知道是不是uniappx的bug,要排除这个标签
+		// #ifdef APP
+		children = children.filter(v => v.tagName != 'COMMENT' && v.nodeName != '#comment')
+		// #endif
+		//插槽传递过来的层级可能只有一层并且不是按钮组，需要判断一下
+		if (children.length == 1 && children[0].dataset['s'] != 'swipe-action') {
+			children = children[0].children
+			// #ifdef APP
+			children = children.filter(v => v.tagName != 'COMMENT' && v.nodeName != '#comment')
+			// #endif
+		}
+
+
+		return children
+	}
+
+	/**
+	 * 获取尺寸信息
+	 */
+
+	const resize = () => {
+		if (rightAction.value == null) {
+			state.value.rightWidth = 0
+		} else {
+			state.value.rightWidth = rightAction.value?.getBoundingClientRect().width ?? 0
+		}
+
+		if (leftAction.value == null) {
+			state.value.leftWidth = 0
+		} else {
+			state.value.leftWidth = leftAction.value?.getBoundingClientRect().width ?? 0
+		}
+	}
+
+	watch([leftAction, rightAction, () => props.leftMenu, () => props.rightMenu], resize, {
+		deep: true
+	})
+
+
+
+
+
+	/**
+	 * 左滑
+	 */
+	const handleLeftActions = (x : number) => {
+		if (leftAction.value == null) return
+		if (x < 0) x = 0
+		const duration = isDragging.value ? '0ms' : props.duration + 'ms'
+		const children = getDomChildren(leftAction.value)
+		let offset = state.value.leftWidth
+		for (let i = 0; i < children.length; i++) {
+			let moveX = 0
+			if (i != children.length - 1) {
+				offset -= children[i].getBoundingClientRect().width
+				moveX = offset - x * (offset / state.value.leftWidth)
+			}
+			if (moveX < 0) moveX = 0
+			children[i].style.setProperty('transition-property', 'transform')
+			children[i].style.setProperty('transition-duration', duration)
+			children[i].style.setProperty('transform', `translateX(${moveX}px)`)
+			children[i].style.setProperty('z-index', children.length - i)
+		}
+	}
+
+	/**
+	 * 右滑
+	 */
+	const handleRightActions = (x : number) => {
+		if (rightAction.value == null) return
+		if (x > 0) x = 0
+		const duration = isDragging.value ? '0ms' : props.duration + 'ms'
+		const children = getDomChildren(rightAction.value)
+		let offset = 0
+		for (let i = 0; i < children.length; i++) {
+			let moveX = 0
+			if (i > 0) {
+				offset += children[i - 1].getBoundingClientRect().width
+				moveX = -offset + x * (-offset / state.value.rightWidth)
+			}
+			if (moveX > 0) moveX = 0
+			children[i].style.setProperty('transition-property', 'transform')
+			children[i].style.setProperty('transition-duration', duration)
+			children[i].style.setProperty('transform', `translateX(${moveX}px)`)
+		}
+	}
+
+	/**
+	 * 移动 animation
+	 */
+
+	const animateActions = (x : number) => {
+		state.value.x = clamp(x, -state.value.rightWidth, state.value.leftWidth)
+		const duration = isDragging.value ? '0ms' : props.duration + 'ms'
+		swipe.value?.style.setProperty('transition-property', 'transform')
+		swipe.value?.style.setProperty('transition-duration', duration)
+		swipe.value?.style.setProperty('transform', `translateX(${state.value.x}px)`)
+
+		if (props.iosStyle == true) {
+			handleLeftActions(state.value.x)
+			handleRightActions(state.value.x)
+		}
+	}
+
+
+	/**
+	 * 获取父实例
+	 */
+	const instance = getCurrentInstance()!.proxy!
+	const swipeaction = ref<VueComponent | null>(null)
+	const getSwipeAction = () => {
+		let parent = instance.$parent
+		//1.h5端 view等内置标签是以 Vue 组件方式实现，$parent 会获取这些到内置组件，导致的问题是 this.$parent 与其他平台不一致
+		//2.swipe-action组件下的第一级元素可能不是swipe-action-item
+		let parentName = parent?.$options.name
+		while (parentName != 'riceSwipeAction') {
+			parent = parent?.$parent
+			if (parent == null) {
+				break;
+			}
+			parentName = parent.$options.name
+		}
+		swipeaction.value = parent
+	}
+
+	/**
+	 * 关闭其他的单元格
+	 */
+	const closeSwipe = () => {
+		swipeaction.value?.$callMethod('closeOther', instance)
+	}
+
+
+	/**
+	 * 打开单元格
+	 */
+	const open = (direction : SwipeDirection) => {
+		closeSwipe()
+		isDragging.value = false
+		const offsetX = direction == 'left' ? state.value.leftWidth : -state.value.rightWidth
+		show.value = direction
+		animateActions(offsetX)
+		if (!state.value.opened) {
+			state.value.opened = true
+			emit('open', {
+				name: props.name,
+				direction
+			})
+		}
+	}
+
+	/**
+	 * 关闭单元格
+	 */
+	const close = () => {
+		isDragging.value = false
+		show.value = 'none'
+		animateActions(0)
+		if (state.value.opened) {
+			state.value.opened = false
+			emit('close', {
+				name: props.name
+			})
+		}
+	}
+
+
+	/**
+	 * menuClick
+	 */
+	const menuClick = (index : number, direction : SwipeDirection) => {
+		if (props.autoClose) {
+			close()
+		}
+		emit('menuClick', {
+			index,
+			direction,
+			name: props.name
+		})
+	}
+
+	/**
+	 * contentClick
+	 */
+	const contentClick = () => {
+		if (props.autoClose) {
+			close()
+		}
+		emit('contentClick', {
+			name: props.name
+		})
+	}
+
+	/**
+	 * 触摸开始
+	 */
+	const onTouchstart = (e : UniTouchEvent) => {
+		if (props.disabled) return
+		isDragging.value = true
+		skipMove.value = false
+		touch.start(e)
+		resize()
+		preX.value = state.value.x
+		closeSwipe()
+	}
+
+	/**
+	 * 触摸中
+	 */
+	const onTouchmove = (e : UniTouchEvent) => {
+		const { deltaX, rollDirection } = touch
+		if (props.disabled) return
+		if (skipMove.value) return
+		touch.move(e)
+		if (rollDirection.value == 'vertical') {
+			skipMove.value = true
+		}
+		if (rollDirection.value != 'horizontal') {
+			return
+		}
+		const offsetX = deltaX.value + preX.value
+		animateActions(offsetX)
+		// #ifndef APP-IOS
+		if (e.cancelable) {
+			e.preventDefault()
+		}
+		// #endif
+		e.stopPropagation()
+
+	}
+
+	/**
+	 * 阈值
+	 */
+
+	const getThreshold = () => {
+		const THRESHOLD = 0.15
+		const num = state.value.opened ? 1 - THRESHOLD : THRESHOLD
+		return direction.value == 'left' ? state.value.leftWidth * num : state.value.rightWidth * num
+	}
+
+	/**
+	 * 触摸结束
+	 */
+	const onTouchend = () => {
+		if (props.disabled) return
+		isDragging.value = false
+		const threshold = getThreshold()
+		if (Math.abs(state.value.x) > threshold) {
+			open(direction.value)
+		} else {
+			close()
+		}
+	}
+
+	/**
+	 * 打开、关闭监听
+	 */
+	let timer : number | null = null
+	const sleep = () => {
+		return new Promise((resolve) => {
+			if (timer != null) clearTimeout(timer!)
+			timer = setTimeout(() => {
+				resolve(true)
+			}, 100)
+		})
+	}
+
+	const changeShow = async () => {
+		if (props.disabled) return
+		if (show.value == 'none') {
+			close()
+			return
+		}
+		if (show.value == 'right' && hasRightAction.value && state.value.rightWidth == 0) {
+			await sleep()
+			resize()
+			open(show.value)
+		}
+		if (show.value == 'left' && hasLeftAction.value && state.value.leftWidth == 0) {
+			await sleep()
+			resize()
+			open(show.value)
+		}
+
+	}
+
+
+	watch(show, changeShow, {
+		immediate: true
+	})
+
+
+	onMounted(() => {
+		getSwipeAction()
+	})
+
+	onUnmounted(() => {
+		if (timer != null) clearTimeout(timer!)
+	})
+
+	defineExpose({
+		open,
+		close,
+		resize,
+	})
+</script>
+<!-- #endif -->
+
+
+<style scoped lang="scss">
+	@mixin transition {
+		transition-property: transform;
+		transition-duration: 0ms;
+		transition-timing-function: ease;
+	}
+
+	.rice-swipe-action {
+		width: 100%;
+	}
+
+	.rice-swipe-cell {
+		@include transition();
+		overflow: visible;
+		position: relative;
+		width: 100%;
+		flex-direction: row;
+		flex-shrink: 0;
+
+		&_left {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			height: 100%;
+			flex-direction: row;
+			align-items: center;
+			transform: translateX(-100%);
+		}
+
+		&_right {
+			position: absolute;
+			top: 0;
+			right: 0;
+			z-index: 1;
+			height: 100%;
+			flex-direction: row;
+			align-items: center;
+			transform: translateX(100%);
+		}
+
+		&_content {
+			width: 100%;
+		}
+	}
+
+
+	@mixin menu-item {
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		padding: 0 20rpx;
+		box-sizing: border-box;
+		/* #ifndef APP */
+		color: #fff;
+		font-size: 30rpx;
+		/* #endif */
+	}
+
+	.rice-menu-item_left {
+		@include transition();
+		@include menu-item();
+	}
+
+	.rice-menu-item_right {
+		@include transition();
+		@include menu-item();
+	}
+</style>

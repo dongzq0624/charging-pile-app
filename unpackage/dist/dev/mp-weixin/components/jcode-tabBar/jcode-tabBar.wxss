@@ -1,0 +1,117 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/*文字颜色2*/
+/* 背景颜色 */
+/* 页面左右间距 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 文字尺寸2 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 全局统一变量 */
+.flex.data-v-7850d2c8 {
+  display: flex;
+}
+
+/* 垂直居中 */
+/* 垂直两排居中 */
+/* flex布局往下排列 */
+/* padding布局，$n为自定义边距 */
+/* 单行省略 */
+/* 多行省略 */
+/* 边框 */
+view.data-v-7850d2c8 {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.tabbar-container.data-v-7850d2c8 {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 55px;
+  /* box-shadow: 0 0 5px    #8d6c36; */
+  display: flex;
+  align-items: center;
+  color: gray;
+  background-color: white;
+  box-shadow: 0px 0px 14px 0px rgba(231, 160, 109, 0.2);
+}
+.tabbar-container .tabbar-item.data-v-7850d2c8 {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.tabbar-container .tabbar-item .item-top image.data-v-7850d2c8 {
+  width: 40rpx;
+  height: 40rpx;
+}
+.tabbar-container .center-item2.data-v-7850d2c8 {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.tabbar-container .center-item2 .item-top.data-v-7850d2c8 {
+  z-index: 51;
+  width: 110rpx;
+  height: 110rpx;
+  background-color: #F76548;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tabbar-container .center-item2 .item-top image.data-v-7850d2c8 {
+  width: 70rpx;
+  height: 70rpx;
+}
+.tabbar-container .item-active.data-v-7850d2c8 {
+  color: #F76548;
+}
+.tabbar-container .item-bottom.data-v-7850d2c8 {
+  font-size: 24rpx;
+  width: 100%;
+  font-weight: bold;
+}
+
+/*省略部分代码*/
+.tuqi.data-v-7850d2c8 {
+  position: fixed;
+  left: calc(50vw - 97rpx);
+  background-color: #fff;
+  z-index: 50;
+  height: 100rpx;
+  width: 194rpx;
+  -webkit-clip-path: path("M 50,0 Q 35,0 25,7.5 Q 20.5, 11.5 0, 15 V 50 H 100 V15 Q 79.5,11.5 75,7.5 Q 65,0 50,0 z");
+  clip-path: path("M 50,0 Q 35,0 25,7.5 Q 20.5, 11.5 0, 15 V 50 H 100 V15 Q 79.5,11.5 75,7.5 Q 65,0 50,0 z");
+  bottom: 40rpx;
+}
+
+/*省略部分代码*/

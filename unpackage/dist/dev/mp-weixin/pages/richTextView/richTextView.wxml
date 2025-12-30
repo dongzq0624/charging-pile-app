@@ -1,0 +1,1 @@
+<view class="whitePage"><jcode-navbar wx:if="{{a}}" u-i="27021723-0" bind:__l="__l" u-p="{{a}}"></jcode-navbar><view style="padding:15rpx 25rpx"><rich-text nodes="{{b}}"></rich-text></view><jcode-lose-page wx:if="{{c}}" bindbuttonBack="{{d}}" u-i="27021723-1" bind:__l="__l"></jcode-lose-page></view>

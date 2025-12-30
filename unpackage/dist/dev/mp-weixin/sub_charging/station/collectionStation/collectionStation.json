@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "收藏管理",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jcode-navbar": "../../../components/jcode-navbar/jcode-navbar",
+    "uni-icons": "../../../uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "rice-swipe-action-item": "../../../uni_modules/rice-swipe-action/components/rice-swipe-action-item/rice-swipe-action-item",
+    "rice-swipe-action": "../../../uni_modules/rice-swipe-action/components/rice-swipe-action/rice-swipe-action",
+    "jcode-empty": "../../../components/jcode-empty/jcode-empty"
+  }
+}

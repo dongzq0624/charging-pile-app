@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "站点列表",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "jcode-navbar": "../../../components/jcode-navbar/jcode-navbar",
+    "zy-search": "../../../components/zy-search/zy-search",
+    "uni-icons": "../../../uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "jcode-scroll": "../../../components/jcode-scroll/jcode-scroll"
+  }
+}

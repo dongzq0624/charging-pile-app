@@ -1,0 +1,145 @@
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/*文字颜色2*/
+/* 背景颜色 */
+/* 页面左右间距 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 文字尺寸2 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+/* 全局统一变量 */
+.flex.data-v-1fda366d, .cell-container .cell-content.data-v-1fda366d, .cell-container .head-content.data-v-1fda366d, .cell-container.data-v-1fda366d, .container.data-v-1fda366d {
+  display: flex;
+}
+
+/* 垂直居中 */
+/* 垂直两排居中 */
+/* flex布局往下排列 */
+/* padding布局，$n为自定义边距 */
+/* 单行省略 */
+/* 多行省略 */
+/* 边框 */
+.container.data-v-1fda366d {
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+.container .card.data-v-1fda366d {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  background-color: white;
+  padding: 30rpx;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.cell-container.data-v-1fda366d {
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+}
+.cell-container .head-content.data-v-1fda366d {
+  box-sizing: border-box;
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  color: #7a7a7a;
+}
+.cell-container .cell-content.data-v-1fda366d {
+  box-sizing: border-box;
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 28rpx;
+}
+.cell-container .cell-content .cell-content-left.data-v-1fda366d {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  margin-right: 10rpx;
+}
+.cell-container .cell-content .cell-content-left .left-title.data-v-1fda366d {
+  color: black;
+  margin-right: 15px;
+  width: 100px;
+  font-weight: 400;
+  font-size: 32rpx;
+}
+.cell-container .cell-content .cell-content-left .left-right.data-v-1fda366d {
+  word-break: break-all;
+  font-size: 30rpx;
+  text-align: right;
+}
+.bottom-row.data-v-1fda366d {
+  z-index: 100;
+  position: fixed;
+  bottom: 0px;
+  padding: 30rpx;
+  left: 0;
+  background-color: #ffffff;
+  width: 750rpx;
+  box-shadow: 0px -2rpx 12rpx 0px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  padding: 10rpx;
+}
+.bottom-row .btn.data-v-1fda366d {
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #ffffff;
+  font-size: 30rpx;
+  background: #12A1FE;
+  border-radius: 20rpx;
+}
+.img.data-v-1fda366d {
+  width: 40px;
+  height: 40px;
+  /* border:5upx solid #fff; */
+  border-radius: 50%;
+}
+button.data-v-1fda366d::after {
+  border: none;
+}
+button.data-v-1fda366d {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+  box-sizing: border-box;
+  text-align: left;
+  text-decoration: none;
+  line-height: 1.35;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+  color: #000000;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,1 @@
+<view class="data-v-fa30b7fb" style="display:flex;flex-direction:column;align-items:center;width:100%;height:100%;color:gray"><image class="data-v-fa30b7fb" style="width:100%;height:100%;margin-top:-15vh" src="{{a}}" mode="aspectFit"></image><view class="data-v-fa30b7fb" style="margin-top:-25vh">{{b}}</view></view>

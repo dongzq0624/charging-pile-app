@@ -1,0 +1,72 @@
+import type { Ref } from "vue"
+const MIN_DISTANCE = 10;
+type Direction = '' | 'vertical' | 'horizontal';
+type UseTouchType = {
+	start : (e : UniTouchEvent) => void,
+	move : (e : UniTouchEvent) => void,
+	startX : Ref<number>,
+	startY : Ref<number>,
+	deltaX : Ref<number>,
+	deltaY : Ref<number>,
+	rollDirection : Ref<Direction>
+}
+
+/**
+	 * 获取移动的方向
+	 */
+function getDirection(x : number, y : number) : Direction {
+	if (x > y && x > MIN_DISTANCE) {
+		return 'horizontal';
+	}
+	if (y > x && y > MIN_DISTANCE) {
+		return 'vertical';
+	}
+	return '';
+}
+
+export function useTouch() {
+	const startX = ref(0)
+	const startY = ref(0)
+	const deltaX = ref(0)
+	const deltaY = ref(0)
+	const isDragging = ref(false)
+	const rollDirection = ref("")
+
+
+	const reset = () => {
+		deltaX.value = 0
+		deltaY.value = 0
+		rollDirection.value = ""
+	}
+
+	const start = (e : UniTouchEvent) => {
+		reset()
+		isDragging.value = true
+		const touches = e.touches
+		startX.value = touches[0].clientX
+		startY.value = touches[0].clientY
+
+	}
+
+	const move = (e : UniTouchEvent) => {
+		const touches = e.touches
+		deltaX.value = touches[0].clientX - startX.value
+		deltaY.value = touches[0].clientY - startY.value
+		if (rollDirection.value == "") {
+			rollDirection.value = getDirection(Math.abs(deltaX.value), Math.abs(deltaY.value))
+		}
+	}
+
+
+
+
+	return {
+		start,
+		move,
+		startX,
+		startY,
+		deltaX,
+		deltaY,
+		rollDirection,
+	} as UseTouchType
+}

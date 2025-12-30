@@ -1,0 +1,189 @@
+{
+	"pages": [{
+			"path": "pages/tabBar/home/home",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/tabBar/recharge/recharge",
+			"style" : 
+			{
+				"navigationBarTitleText" : "充值",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/tabBar/order/order",
+			"style": {
+				"navigationBarTitleText": "订单",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/tabBar/user/user",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/setting/memberSetting",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/wallet/walletRecord/walletRecord",
+			"style": {
+				"navigationBarTitleText": "钱包明细",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/wallet/recharge/recharge",
+			"style": {
+				"navigationBarTitleText": "钱包充值",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/wallet/withdrawal/withdrawal",
+			"style": {
+				"navigationBarTitleText": "余额退款",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/wallet/recordDetail/recordDetail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/wallet/success/success",
+			"style": {
+				"navigationBarTitleText": "操作成功",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/richTextView/richTextView",
+			"style": {
+				"navigationBarTitleText": "富文本页面",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/scan/manualInput/manualInput",
+			"style": {
+				"navigationBarTitleText": "远程充电",
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"subPackages": [{
+		"root": "sub_charging",
+		"pages": [{
+				"path": "charge/readyToCharge/readyToCharge",
+				"style": {
+					"navigationBarTitleText": "准备充电",
+					"navigationStyle": "custom"
+				}
+			},
+			{
+				"path": "order/orderDetails",
+				"style": {
+					"navigationBarTitleText": "订单详情",
+					"navigationStyle": "custom"
+				}
+			},
+			{
+				"path": "charge/charging/charging",
+				"style": {
+					"navigationBarTitleText": "充电中",
+					"navigationStyle": "custom"
+
+				}
+			}, 
+			{
+				"path" : "station/stationDetail",
+				"style" : 
+				{
+					"navigationBarTitleText" : "电站详情",
+					"navigationStyle": "custom"
+				}
+			},
+			{
+				"path" : "station/stationList/stationList",
+				"style" : 
+				{
+					"navigationBarTitleText" : "站点列表",
+					"navigationStyle": "custom"
+				}
+			},
+			{
+				"path" : "station/collectionStation/collectionStation",
+				"style" : 
+				{
+					"navigationBarTitleText" : "收藏管理",
+					"navigationStyle": "custom"
+				}
+			},
+			{
+				"path" : "station/stationMap/stationMap",
+				"style" : 
+				{
+					"navigationBarTitleText" : "充电地图",
+					"navigationStyle": "custom"
+				}
+			}
+		]
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"custom": true,
+		"color": "#9799a5",
+		"selectedColor": "#28B389",
+		"backgroundColor": "#F8F8F8", //底部背景色
+		"borderStyle": "white", //底部的上边框线条
+		// "fontSize": "12px", //字体大小
+		// "spacing": "5px", //字体到图标的距离
+		// "height": "60px", //底部高
+		"list": [{
+				"text": "首页",
+				"pagePath": "pages/tabBar/home/home"
+			},
+			{
+				"text": "充值",
+				"pagePath": "pages/tabBar/recharge/recharge"
+			},
+			{
+				"text": "订单",
+				"pagePath": "pages/tabBar/order/order"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/tabBar/user/user"
+			}
+		]
+	}
+}

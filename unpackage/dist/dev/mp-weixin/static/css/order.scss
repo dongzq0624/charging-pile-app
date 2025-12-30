@@ -1,0 +1,226 @@
+	.order-cardContent{
+		margin: 10px;
+		background-color: white;
+		border-radius: 15px;
+		background-image: linear-gradient(220deg, #60c0f352, #ffffff);
+		margin-bottom: 30rpx;
+		padding: 10px;
+		box-shadow: 0px 0px 10px 0px rgba(253, 226, 172, 0.3);
+	}  
+	
+	.order-card-top {
+	    border-bottom: 1px solid #80808073;
+	    display: flex;
+	    padding: 10px;
+	    align-items: center;
+	    height: 35rpx;
+		
+		.order-card-top-left{
+			font-size: 30rpx;
+			// color: #12A1FE;
+			font-weight: bold;
+			margin-right: 20rpx;
+		}
+		
+		.paid {
+			font-size: 30rpx;
+			padding-left: 20rpx;
+			color: #12A1FE;
+			font-weight: bold;
+		}
+		
+		.nopaid {
+			font-size: 30rpx;
+			padding-left: 20rpx;
+			color: #666666;
+			font-weight: bold;
+		}
+		
+		.wait {
+			font-size: 30rpx;
+			padding-left: 20rpx;
+			color: #f8b745;
+			font-weight: bold;
+		}
+	}
+	
+	.order-main {
+		color: #8f8e8e;
+		padding: 10px;
+		border-bottom: 1px solid  #80808073;
+		
+		.name {
+			color: gray;
+			width: 150rpx;
+			flex: 0 0 auto;
+			font-size: 14px;
+			align-self: flex-start;
+		}
+	
+		.name-detail {
+			color: #000;
+			font-size: 14px;
+		}
+	
+		.text-height {
+			margin-top: 24rpx;
+			display: flex;
+		}
+	}
+	
+	.order-money-detail {
+		padding: 10px;
+		.name {
+			font-size: 14px;
+			color: #333333;
+			width: 25%;
+			flex: 0 0 auto;
+			align-self: flex-start;
+		}
+
+		.name2 {
+			color: #ffd700;
+			width: 25%;
+			flex: 0 0 auto;
+			align-self: flex-start;
+		}
+
+		.text-height {
+			margin-top: 24rpx;
+			display: flex;
+			justify-content: space-between;
+
+			.degree {
+				color: #12A1FE;
+			}
+
+			.degree2 {
+				color: #12A1FE;
+			}
+		}
+
+		.flex {
+			margin-top: 24rpx;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+
+		}
+
+		.flex view {
+			width: 48%;
+			display: flex;
+			justify-content: space-between;
+
+			.degree {
+				color: #12A1FE;
+				display: inline;
+				float: right;
+			}
+
+			.degree2 {
+
+				color: #12A1FE;
+			}
+
+		}
+	}
+	
+	.card-content {
+		flex-direction: column;
+		display: flex;
+		align-items: center;
+	}
+	
+	.card-title {
+		margin-left: 10rpx;
+		font-size: 32rpx;
+		font-weight: bolder;
+		margin-top: 10rpx;
+	}
+	
+	.my-wallet-card {
+		box-shadow: 0px 0px 10px 0px rgba(253, 226, 172, 0.3);
+		margin-top: 30rpx;
+		display: flex;
+		justify-content: space-around;
+		align-content: center;
+		background: #fff;
+		border-radius: 20rpx;
+		padding: 10rpx 10rpx;
+		text-align: center;
+		width: 95vw;
+		flex-direction: column;
+	
+		.my-wallet-card-top {
+			display: flex;
+			justify-content: space-between;
+		}
+	
+		.my-wallet-card-bottom {
+			display: flex;
+			flex-direction: column;
+			margin-top: 10rpx;
+			padding: 20rpx 0rpx;
+			align-items: center;
+	
+			.my-wallet-card-left {
+				flex: 1;
+				display: flex;
+				flex-direction: row;
+				width: 100%;
+				align-items: center;
+	
+				.card-left-item {
+					display: flex;
+					flex-direction: column;
+					flex: 1;
+	
+					.card-bottom-text {
+						color: gray;
+						font-size: 24rpx;
+						margin-top: 10rpx;
+					}
+	
+				}
+			}
+	
+			.my-wallet-card-right {
+				justify-content: space-between;
+				display: flex;
+				align-items: center;
+				padding: 10rpx;
+				width: 100%;
+				padding: 20rpx 5% 0rpx 5%;
+			}
+		}
+	}
+
+	.action-btn {
+		width: 180rpx;
+		height: 65rpx;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		line-height: 60rpx;
+		font-size: 26rpx;
+		color: white;
+		background: $uni-color-primary;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 10px;
+	
+		&:after {
+			border-radius: 20px;
+		}
+	
+		&.recom {
+			background: #fff9f9;
+			color: #ffc107;
+	
+			&:after {
+				border-color: #f7bcc8;
+			}
+		}
+	}
