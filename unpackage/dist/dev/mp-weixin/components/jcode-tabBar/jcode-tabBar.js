@@ -1,6 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "jcode-tabBar",
   props: {
     currentPage: {
@@ -135,7 +135,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-7850d2c8"]]);
 wx.createComponent(Component);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/components/jcode-tabBar/jcode-tabBar.js.map

@@ -18,7 +18,7 @@
 	</view>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 	import {
 		requestFile
 	} from '@/utils/request.js'

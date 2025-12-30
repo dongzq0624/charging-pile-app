@@ -8,7 +8,7 @@
 	</view>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 	// defineEmits明确事件定义
 	const emit = defineEmits(["buttonBack"])
 

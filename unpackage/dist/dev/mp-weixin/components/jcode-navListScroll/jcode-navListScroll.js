@@ -8,7 +8,7 @@ const _easycom_jcode_scroll = () => "../jcode-scroll/jcode-scroll.js";
 if (!Math) {
   _easycom_jcode_scroll();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "jcode-navListScroll",
   props: {
     scrollHeight: {
@@ -82,6 +82,6 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 wx.createComponent(_sfc_main);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/components/jcode-navListScroll/jcode-navListScroll.js.map

@@ -8,7 +8,7 @@ const _easycom_uni_nav_bar = () => "../../uni_modules/uni-nav-bar/components/uni
 if (!Math) {
   _easycom_uni_nav_bar();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "jcode-navbar",
   props: {
     // 图标和字体颜色
@@ -156,7 +156,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       });
     };
   }
-});
+};
 const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-c6ccd324"]]);
 wx.createComponent(Component);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/components/jcode-navbar/jcode-navbar.js.map

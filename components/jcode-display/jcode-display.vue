@@ -57,7 +57,7 @@
 	<jcode-dialog ref="dialogRef" @buttonBack="buttonBack" type="dialog" :message="dialogMessage"></jcode-dialog>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 	import {
 		getDisplayManageList
 	} from '@/api/baseApi.js'

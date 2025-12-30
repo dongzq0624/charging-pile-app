@@ -9,7 +9,7 @@
 	</view>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 	import {
 		withdrawal
 	} from '@/api/baseApi.js'

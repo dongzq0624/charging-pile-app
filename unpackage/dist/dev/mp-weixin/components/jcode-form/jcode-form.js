@@ -13,7 +13,7 @@ const _easycom_buuug7_simple_datetime_picker = () => "../../uni_modules/buuug7-s
 if (!Math) {
   (_easycom_uni_icons + _easycom_buuug7_simple_datetime_picker)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "jcode-form",
   props: {
     leftIcon: {
@@ -389,7 +389,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-1fda366d"]]);
 wx.createComponent(Component);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/components/jcode-form/jcode-form.js.map

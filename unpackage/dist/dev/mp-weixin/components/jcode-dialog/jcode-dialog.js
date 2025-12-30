@@ -9,7 +9,7 @@ const _easycom_uni_popup = () => "../../uni_modules/uni-popup/components/uni-pop
 if (!Math) {
   _easycom_uni_popup();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "jcode-dialog",
   props: {
     isMaskClick: {
@@ -150,7 +150,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       });
     };
   }
-});
+};
 const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-c562b666"]]);
 wx.createComponent(Component);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/components/jcode-dialog/jcode-dialog.js.map

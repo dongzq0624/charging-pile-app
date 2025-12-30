@@ -10,7 +10,7 @@ const _easycom_uni_load_more = () => "../../uni_modules/uni-load-more/components
 if (!Math) {
   (_easycom_jcode_empty + _easycom_uni_load_more)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "jcode-scroll",
   props: {
     type: {
@@ -281,7 +281,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       });
     };
   }
-});
+};
 const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-a00d1c4d"]]);
 wx.createComponent(Component);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/components/jcode-scroll/jcode-scroll.js.map

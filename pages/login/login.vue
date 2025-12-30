@@ -41,7 +41,7 @@
 	</jcode-dialog>
 </template>
 
-<script setup lang="ts">
+<script setup>
 	import {
 		ref,
 		getCurrentInstance,

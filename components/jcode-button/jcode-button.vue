@@ -6,7 +6,7 @@
 	</view>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 	import {
 		ref,
 		getCurrentInstance

@@ -96,7 +96,7 @@
 	</view>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 	import {
 		getOrderRealTimeInfo
 	} from '@/api/api.js'

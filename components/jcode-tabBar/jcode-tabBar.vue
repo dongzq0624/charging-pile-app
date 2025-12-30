@@ -22,7 +22,7 @@
 		</view>
 	</view>
 </template>
-<script setup lang="ts">
+<script setup>
 	import {
 		defineProps,
 		onMounted,
