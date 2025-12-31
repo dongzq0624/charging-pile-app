@@ -6,8 +6,8 @@
     "keywords": [],
     "author": "DCloud",
     "license": "Apache-2.0",
-    "origin-plugin-dev-name": "zyd-zdc-app",
-    "origin-plugin-version": "1.1",
-    "plugin-dev-name": "zyd-zdc-app",
-    "plugin-version": "1.1"
+    "origin-plugin-dev-name": "uni-config-center",
+    "origin-plugin-version": "0.0.3",
+    "plugin-dev-name": "uni-config-center",
+    "plugin-version": "0.0.3"
 }

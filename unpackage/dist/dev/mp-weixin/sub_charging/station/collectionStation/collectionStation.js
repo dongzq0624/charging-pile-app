@@ -17,7 +17,7 @@ const _easycom_jcode_empty = () => "../../../components/jcode-empty/jcode-empty.
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_uni_icons + _easycom_rice_swipe_action_item + _easycom_rice_swipe_action + _easycom_jcode_empty)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "collectionStation",
   setup(__props) {
     const {
@@ -140,7 +140,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       });
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-031bdf0d"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/sub_charging/station/collectionStation/collectionStation.js.map

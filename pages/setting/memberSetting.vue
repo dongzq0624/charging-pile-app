@@ -19,9 +19,9 @@
 </template>
 
 <script setup>
-	import {
-		requestFile
-	} from '@/utils/request.js'
+	// import {
+	// 	requestFile
+	// } from '@/utils/request.js'
 
 	import {
 		ref,
@@ -122,10 +122,10 @@
 		});
 	}
 
-	import {
-		bindMobile,
-		setStory
-	} from '@/pages/login/loginMethods.js'
+	// import {
+	// 	bindMobile,
+	// 	setStory
+	// } from '@/pages/login/loginMethods.js'
 
 	//一键绑定按钮回调
 	const getPhoneNumberBack = async (button, e) => {

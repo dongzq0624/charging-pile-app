@@ -2818,15 +2818,6 @@ function inject(key, defaultValue, treatDefaultAsFactory = false) {
     warn$1(`inject() can only be used inside setup() or functional components.`);
   }
 }
-/*! #__NO_SIDE_EFFECTS__ */
-// @__NO_SIDE_EFFECTS__
-function defineComponent(options, extraOptions) {
-  return isFunction(options) ? (
-    // #8326: extend call and options.name access are considered side-effects
-    // by Rollup, so we have to wrap it in a pure-annotated IIFE.
-    /* @__PURE__ */ (() => extend({ name: options.name }, extraOptions, { setup: options }))()
-  ) : options;
-}
 const isKeepAlive = (vnode) => vnode.type.__isKeepAlive;
 function onActivated(hook, target) {
   registerKeepAliveHook(hook, "a", target);
@@ -6426,7 +6417,7 @@ function populateParameters(fromRes, toRes) {
   let _SDKVersion = SDKVersion;
   const hostLanguage = (language || "").replace(/_/g, "-");
   const parameters = {
-    appId: "",
+    appId: "__UNI__937E1DA",
     appName: "充电桩",
     appVersion: "1.0.0",
     appVersionCode: "100",
@@ -6575,7 +6566,7 @@ const getAppBaseInfo = {
       hostName: _hostName,
       hostSDKVersion: SDKVersion,
       hostTheme: theme,
-      appId: "",
+      appId: "__UNI__937E1DA",
       appName: "充电桩",
       appVersion: "1.0.0",
       appVersionCode: "100",
@@ -7330,7 +7321,7 @@ function isConsoleWritable() {
 function initRuntimeSocketService() {
   const hosts = "192.168.11.161,127.0.0.1";
   const port = "8090";
-  const id = "mp-weixin_mvfxSL";
+  const id = "mp-weixin__ENYT0";
   const lazy = typeof swan !== "undefined";
   let restoreError = lazy ? () => {
   } : initOnError();
@@ -8311,7 +8302,6 @@ const onPageScroll = /* @__PURE__ */ createLifeCycleHook(
 );
 exports._export_sfc = _export_sfc;
 exports.createSSRApp = createSSRApp;
-exports.defineComponent = defineComponent;
 exports.e = e;
 exports.f = f;
 exports.getCurrentInstance = getCurrentInstance;

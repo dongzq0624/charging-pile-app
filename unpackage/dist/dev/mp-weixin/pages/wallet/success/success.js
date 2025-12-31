@@ -9,7 +9,7 @@ const _easycom_jcode_navbar = () => "../../../components/jcode-navbar/jcode-navb
 if (!Math) {
   _easycom_jcode_navbar();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "success",
   setup(__props) {
     const navbarTitle = common_vendor.ref("");
@@ -36,7 +36,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-c4213421"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/pages/wallet/success/success.js.map

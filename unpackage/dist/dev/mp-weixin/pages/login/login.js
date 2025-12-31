@@ -11,7 +11,7 @@ const _easycom_jcode_dialog = () => "../../components/jcode-dialog/jcode-dialog.
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_jcode_dialog)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "login",
   setup(__props) {
     const {
@@ -73,7 +73,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-e4e4508d"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/login/login.js.map

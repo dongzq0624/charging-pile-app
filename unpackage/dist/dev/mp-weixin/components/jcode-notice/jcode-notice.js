@@ -9,7 +9,7 @@ const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-ico
 if (!Math) {
   _easycom_uni_icons();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "jcode-notice",
   props: {
     group: {
@@ -60,7 +60,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-2240fb10"]]);
 wx.createComponent(Component);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/components/jcode-notice/jcode-notice.js.map

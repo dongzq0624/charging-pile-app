@@ -12,7 +12,7 @@ const _easycom_jcode_dialog = () => "../../components/jcode-dialog/jcode-dialog.
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_jcode_form + _easycom_jcode_dialog)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "memberSetting",
   setup(__props) {
     const {
@@ -145,7 +145,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-61d76cdf"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/setting/memberSetting.js.map

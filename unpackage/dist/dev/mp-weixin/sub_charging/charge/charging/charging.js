@@ -11,7 +11,7 @@ const _easycom_jcode_dialog = () => "../../../components/jcode-dialog/jcode-dial
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_jcode_dialog)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "charging",
   setup(__props) {
     const {
@@ -107,7 +107,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-953e4ffc"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/sub_charging/charge/charging/charging.js.map

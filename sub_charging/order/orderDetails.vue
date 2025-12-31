@@ -113,7 +113,7 @@
 		onShow
 	} from "@dcloudio/uni-app";
 
-	import { getOrderRealTimeInfo } from '@/api/api.js'
+	// import { getOrderRealTimeInfo } from '@/api/api.js'
 
 	const {
 		proxy

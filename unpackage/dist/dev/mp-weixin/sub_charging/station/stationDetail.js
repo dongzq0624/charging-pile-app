@@ -13,7 +13,7 @@ const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-ico
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_jcode_empty + _easycom_uni_icons)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "stationDetail",
   setup(__props) {
     const navBarHeight = common_vendor.ref(common_vendor.index.getSystemInfoSync().statusBarHeight + 60);
@@ -268,7 +268,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       });
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-720581c2"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/sub_charging/station/stationDetail.js.map

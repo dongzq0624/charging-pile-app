@@ -97,9 +97,9 @@
 </template>
 
 <script setup>
-	import {
-		getOrderRealTimeInfo
-	} from '@/api/api.js'
+	// import {
+	// 	getOrderRealTimeInfo
+	// } from '@/api/api.js'
 
 	import {
 		ref,

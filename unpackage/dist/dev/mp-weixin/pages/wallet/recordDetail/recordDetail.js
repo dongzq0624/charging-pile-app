@@ -9,7 +9,7 @@ const _easycom_jcode_navbar = () => "../../../components/jcode-navbar/jcode-navb
 if (!Math) {
   _easycom_jcode_navbar();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "recordDetail",
   setup(__props) {
     const tabCurrentIndex = common_vendor.ref(0);
@@ -106,7 +106,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       });
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-f1a8445e"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/pages/wallet/recordDetail/recordDetail.js.map

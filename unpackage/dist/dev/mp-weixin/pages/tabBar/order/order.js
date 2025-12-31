@@ -15,7 +15,7 @@ const _easycom_jcode_tabBar = () => "../../../components/jcode-tabBar/jcode-tabB
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_uni_icons + _easycom_jcode_navListScroll + _easycom_jcode_tabBar)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "order",
   setup(__props) {
     const getDataUrl = common_vendor.ref("");
@@ -167,7 +167,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-1387b3e1"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/pages/tabBar/order/order.js.map

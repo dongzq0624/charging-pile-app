@@ -29,7 +29,7 @@
 		getCurrentInstance
 	} from 'vue'
 
-	import getAppDisplayGroupConfig from '@/config/appDisplayConfig.js'
+	// import getAppDisplayGroupConfig from '@/config/appDisplayConfig.js'
 
 	import {
 		onShow

@@ -11,7 +11,7 @@ const _easycom_uni_icons = () => "../../../uni_modules/uni-icons/components/uni-
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_uni_icons)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "stationMap",
   setup(__props) {
     const {
@@ -182,7 +182,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       });
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-003fb960"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/sub_charging/station/stationMap/stationMap.js.map

@@ -10,7 +10,7 @@ const _easycom_jcode_losePage = () => "../../components/jcode-losePage/jcode-los
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_jcode_losePage)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "richTextView",
   setup(__props) {
     const {
@@ -49,6 +49,6 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       } : {});
     };
   }
-});
+};
 wx.createPage(_sfc_main);
 //# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/richTextView/richTextView.js.map

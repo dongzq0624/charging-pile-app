@@ -17,7 +17,7 @@ const _easycom_jcode_tabBar = () => "../../../components/jcode-tabBar/jcode-tabB
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_jcode_xsuu_swiper + _easycom_uni_icons + _easycom_jcode_scroll + _easycom_jcode_tabBar)();
 }
-const _sfc_defineComponent = common_vendor.defineComponent({
+const _sfc_main = {
   __name: "home",
   setup(__props) {
     const {
@@ -398,8 +398,8 @@ const _sfc_defineComponent = common_vendor.defineComponent({
       });
     };
   }
-});
-_sfc_defineComponent.__runtimeHooks = 1;
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_defineComponent, [["__scopeId", "data-v-15dac74a"]]);
+};
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-15dac74a"]]);
+_sfc_main.__runtimeHooks = 1;
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/pages/tabBar/home/home.js.map

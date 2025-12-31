@@ -9,7 +9,7 @@ const _easycom_jcode_navbar = () => "../../../components/jcode-navbar/jcode-navb
 if (!Math) {
   _easycom_jcode_navbar();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "recharge",
   setup(__props) {
     const {
@@ -124,7 +124,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-25615b45"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/pages/wallet/recharge/recharge.js.map

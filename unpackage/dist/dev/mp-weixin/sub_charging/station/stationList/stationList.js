@@ -15,7 +15,7 @@ const _easycom_jcode_scroll = () => "../../../components/jcode-scroll/jcode-scro
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_zy_search + _easycom_uni_icons + _easycom_jcode_scroll)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "stationList",
   setup(__props) {
     const {
@@ -195,7 +195,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-114ca5f1"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/sub_charging/station/stationList/stationList.js.map

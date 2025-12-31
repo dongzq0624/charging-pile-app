@@ -12,9 +12,9 @@
 </template>
 
 <script setup>
-	import {
-		withdrawal
-	} from '@/api/baseApi.js'
+	// import {
+	// 	withdrawal
+	// } from '@/api/baseApi.js'
 
 	import {
 		ref,

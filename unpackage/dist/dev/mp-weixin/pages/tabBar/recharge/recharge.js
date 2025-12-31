@@ -11,7 +11,7 @@ const _easycom_jcode_tabBar = () => "../../../components/jcode-tabBar/jcode-tabB
 if (!Math) {
   (_easycom_jcode_navbar + _easycom_jcode_tabBar)();
 }
-const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
+const _sfc_main = {
   __name: "recharge",
   setup(__props) {
     const {
@@ -107,7 +107,7 @@ const _sfc_main = /* @__PURE__ */ common_vendor.defineComponent({
       };
     };
   }
-});
+};
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-4fe39585"]]);
 wx.createPage(MiniProgramPage);
 //# sourceMappingURL=../../../../.sourcemap/mp-weixin/pages/tabBar/recharge/recharge.js.map
